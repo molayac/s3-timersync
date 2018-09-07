@@ -11,7 +11,6 @@ AWS_COMMAND = """aws s3 sync {0} {1} --exclude {2} --include {3} """
 parser = argparse.ArgumentParser(description='Schedule command line. Before run this you must install aws and run "aws configure" command')
 parser.add_argument('-f', '--folder',help='Local folder to sync s3 bucket files, default current directory', default='.')
 parser.add_argument('-b', '--bucket',help='Bucket format: s3://bucket', default='s3://vmaxcommander')
-parser.add_argument('-s', '--schedule',type=int, help='Schedule time in seconds to run sync. default=30', default=30)
 parser.add_argument('-t', '--timeout', type=int, help='Timeout duration of schedule process in minutes. default=10', default=10)
 parser.add_argument('-i', '--include', help='Filters to include', default='*Fleet/*')
 parser.add_argument('-e', '--exclude', help='Filters to exclude, default *', default='*')
@@ -19,7 +18,7 @@ parser.add_argument('-e', '--exclude', help='Filters to exclude, default *', def
 args = parser.parse_args()
 COMMAND = AWS_COMMAND.format(args.bucket, args.folder, args.exclude, args.include)
 def main():
-        t_end = time.time() + args.schedule * args.timeout
+        t_end = time.time() + 60 * args.timeout
         while time.time() < t_end :
                 print("#### Starting")
                 runCommandCli()

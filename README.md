@@ -26,17 +26,15 @@ $ s3-timersync -c s3://bucket -f FOLDER_LOCAL"
 ```
 
 ----
-Configurar la sincronizacion para que a los 60 minutos se detenga el script:
+Configurar prefijo de inclusion para filtrar en el bucket de s3, por defecto es *Fleet/*:
 ```sh
-$ s3-timersync -f FOLDER_LOCAL -t 60
+$ s3-timersync -f FOLDER_LOCAL -t 60 -i *INCLUDEDFOLDER*
 ```
 
----
-Configurar que cada 2 segundos durante 10 minutos se ejecute el comando de sincronizacion:
+----
+Configurar prefijo de exclusion para filtrar en el bucket de s3, por defecto es *:
 ```sh
-$ s3-timersync -f FOLDER_LOCAL -s 2
-```
-
+$ s3-timersync -f FOLDER_LOCAL -t 60 -e *EXCLUDE_FOLDER*
 ##### **Tener en cuenta:** *Los tiempos por defecto son ejecución cada 60 segundos durante 10 minutos, el folder local por defecto es el actual, el bucket debe configurarse*
 
 ---
